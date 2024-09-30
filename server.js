@@ -4,14 +4,14 @@ const path=require("path");
 const mongoose=require("mongoose");
 const cookieParser=require("cookie-parser");
 const app=express();
-const PORT=8000;
+const PORT=process.env.PORT;
 const userRoute=require("./routes/user");
 const blogRoute=require("./routes/blog");
 const Blog=require("./models/blog");
 
 const { checkForAuthenticationCookie } = require("./middlewares/authentication");
 
-mongoose.connect("mongodb://localhost:27017/blogger").then(e=>console.log("MONGODB IS CONNECTED"));
+mongoose.connect(process.env.MONGO_URL).then(e=>console.log("MONGODB IS CONNECTED"));
 
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
